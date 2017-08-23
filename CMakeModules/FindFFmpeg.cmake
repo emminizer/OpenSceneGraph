@@ -66,11 +66,12 @@ MACRO(FFMPEG_FIND varname shortname headername)
         DOC "Location of FFMPEG Headers"
     )
 
+    # FFMPEG installs to BIN on Windows
     FIND_LIBRARY(FFMPEG_${varname}_LIBRARIES
         NAMES ${shortname}
         PATHS
-        ${FFMPEG_ROOT}/lib
-        $ENV{FFMPEG_DIR}/lib
+        ${FFMPEG_ROOT}/bin
+        $ENV{FFMPEG_DIR}/bin
         ${FFMPEG_ROOT}/lib${shortname}
         $ENV{FFMPEG_DIR}/lib${shortname}
         ~/Library/Frameworks

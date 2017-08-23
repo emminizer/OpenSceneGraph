@@ -9,7 +9,7 @@
  *
  * You may contact the author if you have suggestions/corrections/enhancements.
  */
-
+#include <algorithm>
 #include "dxfEntity.h"
 #include "dxfFile.h"
 #include "scene.h"

@@ -20,6 +20,7 @@
 
 #include <osgUtil/SmoothingVisitor>
 
+#include <algorithm>
 #include <string.h>
 #include <stdlib.h>
 

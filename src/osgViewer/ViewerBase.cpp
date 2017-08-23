@@ -273,7 +273,9 @@ void ViewerBase::setUpThreading()
     getContexts(contexts);
 
     // set up affinity of main thread
-    OpenThreads::SetProcessorAffinityOfCurrentThread(_affinity);
+    // Remove processor affinity, fixing SIM-7089.  See OSG mailing list thread titled
+    // "SingleThreaded leading to whole application just running on one core"
+    // OpenThreads::SetProcessorAffinityOfCurrentThread(_affinity);
 
     // set up the number of graphics contexts.
     {

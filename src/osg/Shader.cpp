@@ -677,19 +677,26 @@ void Shader::PerContextShader::compileShader(osg::State& state)
         {
             // OSG_NOTICE<<"Shader::PerContextShader::compileShader() : Found #version,  lineNum = "<<lineNum<<" ["<<versionLine<<"] new source = ["<<source<<"]"<<std::endl;
             const GLchar* sourceText[3];
+            GLint lengths[3];
             //OSG_NOTICE<<"glShaderSource() ["<<versionLine<<"] "<<std::endl<<"["<<_defineStr<<"], ["<<sourceText<<"]"<<std::endl;
             sourceText[0] = reinterpret_cast<const GLchar*>(versionLine.c_str());
             sourceText[1] = reinterpret_cast<const GLchar*>(_defineStr.c_str());
             sourceText[2] = reinterpret_cast<const GLchar*>(source.c_str());
-            _extensions->glShaderSource( _glShaderHandle, 3, sourceText, NULL );
+            lengths[0] = versionLine.length();
+            lengths[1] = _defineStr.length();
+            lengths[2] = source.length();
+            _extensions->glShaderSource( _glShaderHandle, 3, sourceText, lengths );
         }
         else
         {
             const GLchar* sourceText[2];
+            GLint lengths[2];
             //OSG_NOTICE<<"glShaderSource() ["<<_defineStr<<"], ["<<sourceText<<"]"<<std::endl;
             sourceText[0] = reinterpret_cast<const GLchar*>(_defineStr.c_str());
             sourceText[1] = reinterpret_cast<const GLchar*>(source.c_str());
-            _extensions->glShaderSource( _glShaderHandle, 2, sourceText, NULL );
+            lengths[0] = _defineStr.length();
+            lengths[1] = source.length();
+            _extensions->glShaderSource( _glShaderHandle, 2, sourceText, lengths );
         }
     }
     _extensions->glCompileShader( _glShaderHandle );
